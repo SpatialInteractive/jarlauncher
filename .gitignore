@@ -1,0 +1,8 @@
+bin/
+build/
+Debug
+Release
+winlauncher.ncb
+winlauncher.vcproj.*
+*.suo
+*.obj

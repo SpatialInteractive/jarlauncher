@@ -1,0 +1,40 @@
+<project name="jarlauncher" default="dist">
+	<target name="clean">
+		<delete dir="build"/>
+	</target>
+	<target name="compile">
+		<mkdir dir="build/classes"/>
+		<javac srcdir="src" 
+			destdir="build/classes"
+			includeantruntime="true"
+			encoding="UTF-8" debug="true"
+			source="1.5"
+			target="1.5">
+		</javac>
+		<copy todir="build/classes">
+			<fileset dir="src">
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+		
+		<!-- Define tasks -->
+		<!--
+		<taskdef name="jarexec" classname="net.rcode.buildtools.JarExecTask">
+			<classpath>
+				<pathelement location="${build.tools.classes}"/>
+			</classpath>
+		</taskdef>
+		-->
+	</target>
+	
+	<target name="dist" depends="compile">
+		<mkdir dir="build/dist"/>
+		<jar jarfile="build/dist/jarlauncher-ant.jar" basedir="build/classes"/>
+	</target>
+	
+  <target name="update-winlauncher">
+    <copy todir="src/net/rcode/buildtools" file="windows_native/winlauncher.exe"/>
+  </target>
+  
+</project>
+
